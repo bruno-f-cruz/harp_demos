@@ -16,6 +16,7 @@ Further instructions on how to setup and interact with Harp devices can be found
 
 - Connect a Harp Behavior board.
 - Connect an LED to `DOPort0` (or just use the poke board). Connect a noseport to `DIPort0` (or just use the poke board). Connect a speaker to `DO0`.
+- Connect an optional second LED to `LED1`. This will mimic optogenetic stimulation. Opto stimulation is automatically triggered when the led light is turned on or can be manually triggered using the button in the `Visualizer` node.
 - Set the COM port
 - Run the workflow
 - Open the visualizers by double clicking the `Visualizer` node.

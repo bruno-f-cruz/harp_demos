@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.5"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -424,7 +424,7 @@
                   <Expression xsi:type="MulticastSubject">
                     <Name>Commands</Name>
                   </Expression>
-                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Boolean">
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:Unit">
                     <rx:Name>TriggerCamera</rx:Name>
                   </Expression>
                   <Expression xsi:type="beh:CreateMessage">
@@ -833,6 +833,7 @@
                         <Expression xsi:type="MulticastSubject">
                           <Name>SpeakerFeedback</Name>
                         </Expression>
+                        <Expression xsi:type="Unit" />
                         <Expression xsi:type="MulticastSubject">
                           <Name>TriggerCamera</Name>
                         </Expression>
@@ -843,6 +844,7 @@
                         <Edge From="1" To="2" Label="Source1" />
                         <Edge From="2" To="3" Label="Source1" />
                         <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -1013,38 +1015,32 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="gui:ButtonBuilder">
-                <gui:Name>Camera</gui:Name>
-                <gui:Enabled>true</gui:Enabled>
-                <gui:Visible>true</gui:Visible>
-                <gui:Text>Trigger Camera!</gui:Text>
-              </Builder>
+            <Expression xsi:type="gui:ButtonBuilder">
+              <gui:Name>Camera</gui:Name>
+              <gui:Enabled>true</gui:Enabled>
+              <gui:Visible>true</gui:Visible>
+              <gui:Text>Trigger Camera!</gui:Text>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="rx:Sink">
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="Unit" />
-                    <Expression xsi:type="MulticastSubject">
-                      <Name>TriggerCamera</Name>
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="1" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source1" />
-                    <Edge From="2" To="3" Label="Source1" />
-                  </Edges>
-                </Workflow>
-              </Builder>
+            <Expression xsi:type="rx:Sink">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="Unit" />
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>TriggerCamera</Name>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="VisualizerMapping" />
-            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="gui:TableLayoutPanelBuilder">
               <gui:Name>Panel</gui:Name>
               <gui:Enabled>true</gui:Enabled>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.2"
+<WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -36,6 +36,22 @@
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
               <Name>Events</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Events</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:GroupByRegister" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:MessageWriter">
+                <harp:FileName>Data\Behavior.bin</harp:FileName>
+                <harp:Suffix>None</harp:Suffix>
+                <harp:Buffered>true</harp:Buffered>
+                <harp:Overwrite>true</harp:Overwrite>
+                <harp:FilterType>Include</harp:FilterType>
+                <harp:MessageType xsi:nil="true" />
+              </Combinator>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>ConfigureSpeaker</Name>
@@ -447,8 +463,10 @@
             <Edge From="0" To="2" Label="Source1" />
             <Edge From="1" To="2" Label="Source2" />
             <Edge From="2" To="3" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
